@@ -39,7 +39,7 @@ VectorXf solve_linear(int count_elements){
     }
 
     A_matrix.row(0).setZero();
-    A_matrix(0,0) = 1;
+    A_matrix(0,0) = 1.;
     b_vector(0) = lower_u;
 
     b_vector(math_dimension-1) -= A*upper_u;
@@ -86,7 +86,7 @@ VectorXf solve_cubic(float count_elements){
     }
 
     A_matrix.row(0).setZero();
-    A_matrix(0,0) = 1;
+    A_matrix(0,0) = 1.;
     b_vector(0) = lower_u;
 
     b_vector(math_dimension - 1) -= A*upper_u;
