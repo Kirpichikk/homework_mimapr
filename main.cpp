@@ -20,7 +20,7 @@ using namespace std;
 VectorXf solve_linear(int count_elements){
 
     float L = (upper_x - lower_x) / (float)count_elements;
-    int math_dimension = count_elements;
+    int math_dimension = count_elements+1;
 
     MatrixXf A_matrix(math_dimension, math_dimension);
     VectorXf b_vector(math_dimension);
@@ -52,7 +52,7 @@ VectorXf solve_linear(int count_elements){
 VectorXf solve_cubic(float count_elements){
 
     float L = (upper_x - lower_x) / (float)count_elements;
-    int math_dimension = 3 * count_elements;
+    int math_dimension = 3 * count_elements+1;
 
     MatrixXf A_matrix(math_dimension, math_dimension);
     VectorXf b_vector(math_dimension);
