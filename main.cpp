@@ -17,13 +17,13 @@ using namespace std;
 #define lower_u -6.0
 #define upper_u 3.0
 
-VectorXf solve_linear(int count_elements){
+VectorXd solve_linear(int count_elements){
 
-    float L = (upper_x - lower_x) / (float)count_elements;
+    double L = (upper_x - lower_x) / static_cast<double>count_elements;
     int math_dimension = count_elements+1;
 
-    MatrixXf A_matrix(math_dimension, math_dimension);
-    VectorXf b_vector(math_dimension);
+    MatrixXd A_matrix(math_dimension, math_dimension);
+    VectorXd b_vector(math_dimension);
 
     A_matrix.setZero();
     b_vector.setZero();
@@ -47,13 +47,13 @@ VectorXf solve_linear(int count_elements){
     return A_matrix.fullPivHouseholderQr().solve(b_vector);
 }
 
-VectorXf solve_cubic(float count_elements){
+VectorXd solve_cubic(float count_elements){
 
-    float L = (upper_x - lower_x) / (float)count_elements;
+    double L = (upper_x - lower_x) / static_cast<double>count_elements;
     int math_dimension = 3 * count_elements+1;
 
-    MatrixXf A_matrix(math_dimension, math_dimension);
-    VectorXf b_vector(math_dimension);
+    MatrixXd A_matrix(math_dimension, math_dimension);
+    VectorXd b_vector(math_dimension);
 
     A_matrix.setZero();
     b_vector.setZero();
@@ -94,7 +94,7 @@ VectorXf solve_cubic(float count_elements){
     return A_matrix.fullPivHouseholderQr().solve(b_vector);
 }
 
-void writeVectorToFile(const VectorXf& vec, const string& type, const string& count) {
+void writeVectorToFile(const VectorXd& vec, const string& type, const string& count) {
     string filename = type + count+".txt";
     std::ofstream file(filename);
     if (file.is_open()) {
@@ -106,8 +106,8 @@ void writeVectorToFile(const VectorXf& vec, const string& type, const string& co
 int main(int args, char* argv[]){
     int count = stoi(argv[1]);
     string count_name = argv[1];
-    VectorXf linear;
-    VectorXf cubic;
+    VectorXd linear;
+    VectorXd cubic;
 
     linear = solve_linear(count);
     cubic = solve_cubic(count);
