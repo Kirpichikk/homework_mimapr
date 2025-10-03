@@ -42,8 +42,6 @@ VectorXf solve_linear(int count_elements){
     A_matrix(0,0) = 1;
     b_vector(0) = lower_u;
 
-    A_matrix.row(math_dimension-1).setZero();
-    A_matrix(math_dimension-1, math_dimension-1) = 1;
     b_vector(math_dimension-1) -= A*upper_u;
 
     return A_matrix.fullPivHouseholderQr().solve(b_vector);
@@ -91,8 +89,6 @@ VectorXf solve_cubic(float count_elements){
     A_matrix(0,0) = 1;
     b_vector(0) = lower_u;
 
-    A_matrix.row(math_dimension - 1).setZero();
-    A_matrix(math_dimension -1, math_dimension - 1) = 1;
     b_vector(math_dimension - 1) -= A*upper_u;
 
     return A_matrix.fullPivHouseholderQr().solve(b_vector);
