@@ -6,20 +6,20 @@
 using namespace Eigen;
 using namespace std;
 
-#define A 1.0
-#define B 9.0
+#define A 10.0
+#define B -4.0
 #define C 0.0
-#define D 17.0
+#define D 7.0
 
-#define lower_x 1.0
-#define upper_x 9.0
+#define lower_x 3.0
+#define upper_x 14.0
 
-#define lower_u -6.0
-#define upper_u 3.0
+#define lower_u 10.0
+#define upper_u 10.0
 
 VectorXd solve_linear(int count_elements){
 
-    double L = (upper_x - lower_x) / static_cast<double>count_elements;
+    double L = (upper_x - lower_x) / static_cast<double>(count_elements);
     int math_dimension = count_elements+1;
 
     MatrixXd A_matrix(math_dimension, math_dimension);
@@ -44,12 +44,12 @@ VectorXd solve_linear(int count_elements){
 
     b_vector(math_dimension-1) -= A*upper_u;
 
-    return A_matrix.fullPivHouseholderQr().solve(b_vector);
+    return A_matrix.colPivHouseholderQr().solve(b_vector);
 }
 
 VectorXd solve_cubic(float count_elements){
 
-    double L = (upper_x - lower_x) / static_cast<double>count_elements;
+    double L = (upper_x - lower_x) / static_cast<double>(count_elements);
     int math_dimension = 3 * count_elements+1;
 
     MatrixXd A_matrix(math_dimension, math_dimension);
@@ -91,7 +91,7 @@ VectorXd solve_cubic(float count_elements){
 
     b_vector(math_dimension - 1) -= A*upper_u;
 
-    return A_matrix.fullPivHouseholderQr().solve(b_vector);
+    return A_matrix.colPivHouseholderQr().solve(b_vector);
 }
 
 void writeVectorToFile(const VectorXd& vec, const string& type, const string& count) {
